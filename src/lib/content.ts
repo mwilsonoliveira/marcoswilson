@@ -8,14 +8,14 @@ export function isLocale(value: string): value is Locale {
 type Content = {
   nav: { label: string; href: string }[];
   hero: {
-    eyebrow: string;
+    floatingLabel: string;
     title: string;
     intro: string;
     availability: string;
     primaryCta: string;
     secondaryCta: string;
   };
-  about: { kicker: string; title: string; paragraphs: string[]; stats: { value: string; label: string }[] };
+  about: { kicker: string; title: string; paragraphs: string[]; stats: { startYear: number; label: string }[] };
   skills: { title: string; intro: string; groups: { title: string; items: string[] }[] };
   experience: {
     title: string;
@@ -46,7 +46,7 @@ export const content: Record<Locale, Content> = {
       { label: "Contato", href: "contact" },
     ],
     hero: {
-      eyebrow: "Olá, eu sou Marcos Wilson",
+      floatingLabel: "Transformando ideias em realidade",
       title: "Desenvolvo produtos digitais de ponta a ponta.",
       intro: "Desenvolvedor Full-Stack com foco em experiências web rápidas, APIs robustas e produtos que resolvem problemas reais.",
       availability: "Aberto a oportunidades remotas ou híbridas",
@@ -62,9 +62,9 @@ export const content: Record<Locale, Content> = {
         "Gosto de transformar protótipos em interfaces cuidadosas, integrar APIs e construir serviços preparados para evoluir com o negócio.",
       ],
       stats: [
-        { value: "12+", label: "anos em tecnologia" },
-        { value: "5+", label: "anos criando produtos" },
-        { value: "Full", label: "web, mobile e APIs" },
+        { startYear: 2012, label: "anos em tecnologia" },
+        { startYear: 2019, label: "anos criando produtos" },
+        { startYear: 2021, label: "anos em web, mobile e APIs" },
       ],
     },
     skills: {
@@ -112,7 +112,7 @@ export const content: Record<Locale, Content> = {
       { label: "Contact", href: "contact" },
     ],
     hero: {
-      eyebrow: "Hi, I'm Marcos Wilson",
+      floatingLabel: "shipping ideas",
       title: "I build digital products from end to end.",
       intro: "Full-Stack Developer focused on fast web experiences, robust APIs and products that solve real problems.",
       availability: "Open to remote or hybrid opportunities",
@@ -128,9 +128,9 @@ export const content: Record<Locale, Content> = {
         "I enjoy turning prototypes into thoughtful interfaces, integrating APIs and building services ready to evolve with the business.",
       ],
       stats: [
-        { value: "12+", label: "years in technology" },
-        { value: "5+", label: "years building products" },
-        { value: "Full", label: "web, mobile and APIs" },
+        { startYear: 2012, label: "years in technology" },
+        { startYear: 2019, label: "years building products" },
+        { startYear: 2021, label: "years in web, mobile and APIs" },
       ],
     },
     skills: {
