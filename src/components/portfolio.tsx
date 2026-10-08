@@ -80,7 +80,10 @@ export function Portfolio({ locale, repos }: { locale: Locale; repos: GithubRepo
               <article><div className="timeline-date">{role.period}</div><p className="timeline-location">{role.location}</p><h3>{role.role}</h3><h4>{role.company}</h4><p>{role.description}</p></article>
             </Reveal>
           ))}</div>
-          <Reveal className="transition-note"><span>{"//"}</span>{copy.experience.transition}</Reveal>
+          <Reveal className="transition-note">
+            <p><span className="transition-prefix" aria-hidden="true">{"//"}</span>{copy.experience.transition}</p>
+            <a className="button button-primary" href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={18} />{copy.experience.fullProfile}<ArrowUpRight size={18} /></a>
+          </Reveal>
         </section>
 
         <section id="projects" className="section-wrap section">

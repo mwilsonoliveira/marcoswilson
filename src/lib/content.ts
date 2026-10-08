@@ -22,6 +22,7 @@ type Content = {
     intro: string;
     roles: { company: string; role: string; period: string; location: string; description: string }[];
     transition: string;
+    fullProfile: string;
   };
   projects: {
     title: string;
@@ -86,6 +87,7 @@ export const content: Record<Locale, Content> = {
         { company: "Paipe | Tecnologia e Inovação", role: "Desenvolvedor Front-end", period: "mar 2021 — set 2023", location: "Campo Bom, RS", description: "Aplicações React e React Native com TypeScript, integração de APIs REST, colaboração com back-end Node.js e implementação de interfaces a partir do Figma em equipes ágeis." },
         { company: "Unimed Vale do Sinos", role: "Analista Web Júnior", period: "set 2020 — mar 2021", location: "Novo Hamburgo, RS", description: "Transição para desenvolvimento web após uma sólida trajetória interna em suporte de sistemas e infraestrutura." },
       ],
+      fullProfile: "Perfil completo",
       transition: "De 2012 a 2020, atuei em suporte de sistemas e infraestrutura na Service IT e na Unimed Vale do Sinos — uma base que ainda orienta meu olhar para confiabilidade, diagnóstico e experiência do usuário.",
     },
     projects: {
@@ -152,6 +154,7 @@ export const content: Record<Locale, Content> = {
         { company: "Paipe | Tecnologia e Inovação", role: "Front-end Developer", period: "Mar 2021 — Sep 2023", location: "Campo Bom, Brazil", description: "Built React and React Native applications with TypeScript, integrated REST APIs, collaborated on Node.js back-ends and implemented Figma designs in agile teams." },
         { company: "Unimed Vale do Sinos", role: "Junior Web Analyst", period: "Sep 2020 — Mar 2021", location: "Novo Hamburgo, Brazil", description: "Transitioned into web development after a solid internal career in systems support and infrastructure." },
       ],
+      fullProfile: "Full profile",
       transition: "From 2012 to 2020, I worked in systems support and infrastructure at Service IT and Unimed Vale do Sinos — a foundation that still shapes how I approach reliability, diagnostics and user experience.",
     },
     projects: {
