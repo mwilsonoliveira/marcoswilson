@@ -11,10 +11,9 @@ const profile = {
   linkedin: "https://www.linkedin.com/in/mwilson-oliveira/",
 };
 
-function SectionHeading({ index, title, intro }: { index: string; title: string; intro: string }) {
+function SectionHeading({ title, intro }: { title: string; intro: string }) {
   return (
     <Reveal className="section-heading">
-      <span className="section-number">{index}</span>
       <div><h2>{title}</h2><p>{intro}</p></div>
     </Reveal>
   );
@@ -22,6 +21,7 @@ function SectionHeading({ index, title, intro }: { index: string; title: string;
 
 export function Portfolio({ locale, repos }: { locale: Locale; repos: GithubRepo[] }) {
   const copy = content[locale];
+  const currentYear = new Date().getFullYear();
   const dateLocale = locale === "pt" ? "pt-BR" : "en-US";
 
   return (
@@ -30,9 +30,7 @@ export function Portfolio({ locale, repos }: { locale: Locale; repos: GithubRepo
       <Header locale={locale} nav={copy.nav} />
       <main>
         <section id="top" className="hero section-wrap">
-          <div className="hero-orbit" aria-hidden="true"><span>React</span><span>Next.js</span><span>Node.js</span></div>
           <Reveal className="hero-copy">
-            <p className="eyebrow"><span className="status-dot" />{copy.hero.eyebrow}</p>
             <h1>{copy.hero.title}</h1>
             <p className="hero-intro">{copy.hero.intro}</p>
             <div className="availability"><BriefcaseBusiness size={16} />{copy.hero.availability}</div>
@@ -46,13 +44,12 @@ export function Portfolio({ locale, repos }: { locale: Locale; repos: GithubRepo
               <div className="code-dots"><i /><i /><i /></div>
               <pre><span>const</span> developer = {`{`}<br />&nbsp;&nbsp;name: <em>&quot;Marcos&quot;</em>,<br />&nbsp;&nbsp;mindset: <em>&quot;builder&quot;</em>,<br />&nbsp;&nbsp;coffee: <strong>true</strong><br />{`}`};</pre>
             </div>
-            <div className="floating-label"><Sparkles size={16} /> shipping ideas</div>
+            <div className="floating-label"><Sparkles size={16} />{copy.hero.floatingLabel}</div>
           </div>
-          <a href="#about" className="scroll-hint" aria-label="Rolar para a próxima seção"><span>scroll</span><ArrowDown size={18} /></a>
         </section>
 
         <section id="about" className="section-wrap section">
-          <SectionHeading index="01" title={copy.about.kicker} intro={copy.about.title} />
+          <SectionHeading title={copy.about.kicker} intro={copy.about.title} />
           <div className="about-grid">
             <Reveal className="portrait-card">
               <div className="portrait-frame"><Image src="/marcos-wilson.jpg" alt="Marcos Wilson" fill sizes="(max-width: 768px) 80vw, 360px" priority /></div>
@@ -60,13 +57,13 @@ export function Portfolio({ locale, repos }: { locale: Locale; repos: GithubRepo
             </Reveal>
             <div className="about-copy">
               {copy.about.paragraphs.map((paragraph, index) => <Reveal key={paragraph} delay={index * 80}><p>{paragraph}</p></Reveal>)}
-              <div className="stats-grid">{copy.about.stats.map((stat, index) => <Reveal key={stat.label} delay={index * 70} className="stat"><strong>{stat.value}</strong><span>{stat.label}</span></Reveal>)}</div>
+              <div className="stats-grid">{copy.about.stats.map((stat, index) => <Reveal key={stat.label} delay={index * 70} className="stat"><strong>{currentYear - stat.startYear}+</strong><span>{stat.label}</span></Reveal>)}</div>
             </div>
           </div>
         </section>
 
         <section id="skills" className="section-wrap section">
-          <SectionHeading index="02" title={copy.skills.title} intro={copy.skills.intro} />
+          <SectionHeading title={copy.skills.title} intro={copy.skills.intro} />
           <div className="skills-grid">{copy.skills.groups.map((group, index) => (
             <Reveal key={group.title} delay={index * 70} className="skill-card glass-card">
               <div className="skill-icon"><Code2 /></div><h3>{group.title}</h3>
@@ -76,19 +73,21 @@ export function Portfolio({ locale, repos }: { locale: Locale; repos: GithubRepo
         </section>
 
         <section id="experience" className="section-wrap section">
-          <SectionHeading index="03" title={copy.experience.title} intro={copy.experience.intro} />
+          <SectionHeading title={copy.experience.title} intro={copy.experience.intro} />
           <div className="timeline">{copy.experience.roles.map((role, index) => (
             <Reveal key={`${role.company}-${role.period}`} delay={index * 60} className="timeline-item">
-              <div className="timeline-marker"><span /></div>
-              <div className="timeline-date">{role.period}</div>
-              <article><p className="timeline-location">{role.location}</p><h3>{role.role}</h3><h4>{role.company}</h4><p>{role.description}</p></article>
+              <div className="timeline-marker" aria-hidden="true"><span /></div>
+              <article><div className="timeline-date">{role.period}</div><p className="timeline-location">{role.location}</p><h3>{role.role}</h3><h4>{role.company}</h4><p>{role.description}</p></article>
             </Reveal>
           ))}</div>
-          <Reveal className="transition-note"><span>{"//"}</span>{copy.experience.transition}</Reveal>
+          <Reveal className="transition-note">
+            <p><span className="transition-prefix" aria-hidden="true">{"//"}</span>{copy.experience.transition}</p>
+            <a className="button button-primary" href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={18} />{copy.experience.fullProfile}<ArrowUpRight size={18} /></a>
+          </Reveal>
         </section>
 
         <section id="projects" className="section-wrap section">
-          <SectionHeading index="04" title={copy.projects.title} intro={copy.projects.intro} />
+          <SectionHeading title={copy.projects.title} intro={copy.projects.intro} />
           <div className="projects-grid">{copy.projects.items.map((project, index) => (
             <Reveal key={project.name} delay={index * 90} className={`project-card project-${index + 1}`}>
               <div className="project-visual"><div className="project-window"><div><i /><i /><i /></div><span>{project.name.slice(0, 1)}</span><small>{project.name}</small></div></div>
@@ -100,7 +99,7 @@ export function Portfolio({ locale, repos }: { locale: Locale; repos: GithubRepo
         </section>
 
         <section id="github" className="section-wrap section">
-          <SectionHeading index="05" title={copy.github.title} intro={copy.github.intro} />
+          <SectionHeading title={copy.github.title} intro={copy.github.intro} />
           <div className="repo-grid">{repos.map((repo, index) => (
             <Reveal key={repo.id} delay={index * 45} className="repo-card glass-card">
               <div className="repo-top"><Github /><a href={repo.html_url} target="_blank" rel="noreferrer" aria-label={`${repo.name} GitHub`}><ArrowUpRight /></a></div>
@@ -118,7 +117,7 @@ export function Portfolio({ locale, repos }: { locale: Locale; repos: GithubRepo
           </Reveal>
         </section>
       </main>
-      <footer><span>© {new Date().getFullYear()} Marcos Wilson</span><span>{copy.footer}</span><a href="#top">↑ top</a></footer>
+      <footer><span>© {currentYear} Marcos Wilson</span><span>{copy.footer}</span><a href="#top">↑ top</a></footer>
     </div>
   );
 }
